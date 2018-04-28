@@ -19,17 +19,17 @@ object BlockUtils {
     var totalTime = 0
     var maxEndTime = 0
 
-    for (i <- sortedListBlocks.indices) {
-      if (maxEndTime <= sortedListBlocks(i).startTime) {
-        totalTime += sortedListBlocks(i).endTime - sortedListBlocks(i).startTime
+    sortedListBlocks.foreach(block => {
+      if (maxEndTime <= block.startTime) {
+        totalTime += block.endTime - block.startTime
 
-      } else if (maxEndTime < sortedListBlocks(i).endTime) {
-        totalTime +=  sortedListBlocks(i).endTime - maxEndTime
+      } else if (maxEndTime < block.endTime) {
+        totalTime +=  block.endTime - maxEndTime
       }
-      if (maxEndTime < sortedListBlocks(i).endTime) {
-        maxEndTime = sortedListBlocks(i).endTime
+      if (maxEndTime < block.endTime) {
+        maxEndTime = block.endTime
       }
-    }
+    })
 
     totalTime
   }
